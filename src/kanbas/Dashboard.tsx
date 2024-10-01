@@ -14,7 +14,7 @@ export default function Dashboard() {
                  CS1111 React JS
                  </h5>
               <p className="wd-dashboard-course-title">
-                Full Stack software developer Unit1
+                Full Stack software developer Unit11
               </p>
               <button> Go </button>
             </div>
