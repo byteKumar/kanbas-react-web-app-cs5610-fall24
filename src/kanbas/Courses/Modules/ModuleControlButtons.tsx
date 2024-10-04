@@ -1,15 +1,13 @@
 import { IoEllipsisVertical } from "react-icons/io5";
-import { BsPlus } from "react-icons/bs"; // Import the plus icon
 import GreenCheckmark from "./GreenCheckmark";
+import { BsPlus } from "react-icons/bs";
 
-function ModuleControlButtons() {
-    return (
-        <div className="float-end">
-            <BsPlus className="fs-4" /> {/* Add the plus icon */}
-            <GreenCheckmark />
-            <IoEllipsisVertical className="fs-4" />
-        </div>
-    )
+export default function ModuleControlButtons() {
+  return (
+    <div className="float-end">
+      <GreenCheckmark />
+      <BsPlus className="fs-4" />
+      <IoEllipsisVertical className="fs-4" />
+    </div>
+  );
 }
-
-export default ModuleControlButtons
