@@ -4,7 +4,7 @@ import { FaBan, FaCircle, FaSlash } from "react-icons/fa";
 import ModuleEditor from "./ModuleEditor";
 import ProtectedFacultyRoute from "../../Account/ProtectedFacultyRoute";
 
-export default function ModulesControls({
+export default function ModuleControls({
   moduleName,
   setModuleName,
   addModule,

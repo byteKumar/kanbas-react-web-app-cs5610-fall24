@@ -1,59 +1,46 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { setCurrentUser } from "./reducer";
+import * as client from "./client";
 import { useDispatch } from "react-redux";
-import * as db from "../Database";
+import { setCurrentUser } from "./reducer";
 
-export default function Signin() {
-  const [credentials, setCredentials] = useState<any>({});
-  const dispatch = useDispatch();
+export default function SignUp() {
+  const [user, setUser] = useState<any>({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const signin = () => {
-    const user = db.users.find(
-      (u: any) =>
-        u.username === credentials.username &&
-        u.password === credentials.password
-    );
-    if (!user) return;
-    dispatch(setCurrentUser(user));
-    navigate("/Kanbas/Dashboard");
+  const signup = async () => {
+    const currentUser = await client.signup(user);
+
+    dispatch(setCurrentUser(currentUser));
+    navigate("/Kanbas/Account/Profile");
   };
-
   return (
-    <div id="wd-signin-screen">
-      <h1>Sign in</h1>
-
+    <div className="wd-signup-screen">
+      <h1>Sign up</h1>
       <input
-        defaultValue={credentials.username}
-        onChange={(e) =>
-          setCredentials({ ...credentials, username: e.target.value })
-        }
-        id="wd-username"
+        value={user.username}
+        onChange={(e) => setUser({ ...user, username: e.target.value })}
+        className="wd-username form-control mb-2"
         placeholder="username"
-        className="form-control mb-2"
       />
-
       <input
-        defaultValue={credentials.password}
-        onChange={(e) =>
-          setCredentials({ ...credentials, password: e.target.value })
-        }
-        id="wd-password"
-        placeholder="password"
+        value={user.password}
+        onChange={(e) => setUser({ ...user, password: e.target.value })}
         type="password"
-        className="form-control mb-2"
+        className="wd-password form-control mb-2"
+        placeholder="password"
       />
-
       <button
-        onClick={signin}
-        id="wd-signin-btn"
-        className="btn btn-primary w-100"
+        onClick={signup}
+        className="wd-signup-btn btn btn-primary mb-2 w-100"
       >
-        Sign in{" "}
+        {" "}
+        Sign up{" "}
       </button>
-      <Link id="wd-signup-link" to="/Kanbas/Account/Signup">
-        Sign up
+      <br />
+      <Link to="/Kanbas/Account/Signin" className="wd-signin-link">
+        Sign in
       </Link>
     </div>
   );
